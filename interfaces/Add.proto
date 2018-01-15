@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "proto";
+package Add;
+
+
+service Add {
+    rpc AddNumbers(stream Request) returns (stream Response){}
+}
+
+message Request{
+    int64 num = 1;
+}
+
+message Response{
+    int64 sum = 1;
+}
+
