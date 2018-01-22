@@ -1,0 +1,4 @@
+FROM ubuntu
+COPY server .
+EXPOSE 50051
+#ENTRYPOINT ./server

@@ -7,13 +7,16 @@ import (
 	pb "gRPC/Add/proto"
 	"fmt"
 	"time"
+	"os"
 )
 
 
 
 func main() {
-	// Set up a connection to the server.
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	// Set up a connection to the server
+	fmt.Println(os.Args[1])
+	ip := os.Args[1]
+	conn, err := grpc.Dial(ip+":50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

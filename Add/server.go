@@ -1,7 +1,5 @@
 package main
 
-
-
 import (
 	pb "gRPC/Add/proto"
 	"google.golang.org/grpc"
@@ -29,6 +27,8 @@ func (s *addServer)AddNumbers(stream pb.Add_AddNumbersServer)  error{
 		fmt.Printf("Received: %d\n", req.Num)
 		sum += req.Num
 		stream.Send(&pb.Response{sum})
+
+
 	}
 
 
