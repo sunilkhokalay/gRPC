@@ -20,6 +20,8 @@ type server struct{}
 
 
 func (s *server) EchoBack(ctx context.Context, in *pb.EchoRequest) (*pb.EchoResponse, error) {
+	fmt.Println("Message recieved from client:"+in.MsgRequest)
+	fmt.Println("Reply to client: "+in.MsgRequest)
 	return &pb.EchoResponse{MsgReponse: in.MsgRequest}, nil
 }
 
@@ -30,7 +32,8 @@ func main() {
 	if ipv4 := addr.To4(); ipv4 != nil{
 	fmt.Println("IPv4: ",ipv4)
 	}}
-	fmt.Printf("Starting Echo Server on port %d...\n", port)
+
+	fmt.Print("Starting Echo Server on port 50051...\n")
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

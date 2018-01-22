@@ -10,8 +10,7 @@ import (
 )
 
 
-func main() {
-	// Set up a connection to the server.
+func main(){
 
 	ip := os.Getenv("SERVER_IP")
 	address := ip+":50051"
@@ -36,4 +35,11 @@ func main() {
 	
 
 	log.Printf("Server response :%s", r.MsgReponse)
+	
+
+	if r.MsgReponse != requestMsg{
+		log.Fatal("Server Test failed")
+	}
+fmt.Println("Server test passed")
 }
+

@@ -1,5 +1,5 @@
 FROM ubuntu
 ARG SERVER_IP
 ENV SERVER_IP $SERVER_IP
-COPY client .
-ENTRYPOINT ./client $IP
+COPY Test .
+ENTRYPOINT ./Test
