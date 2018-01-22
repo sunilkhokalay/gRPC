@@ -7,6 +7,7 @@ import (
 	"io"
 	"flag"
 	"net"
+	"os"
 )
 
 type addServer struct{
@@ -40,9 +41,14 @@ func newAddServer()  pb.AddServer{
 }
 
 func main() {
+	host,_ := os.Hostname()
+	addrs,_ := net.LookupIP(host)
+	for _,addr := range addrs{
+	if ipv4 := addr.To4(); ipv4 != nil{
+	fmt.Println("IPv4: ",ipv4)
+	}}
 	port := flag.Int("port", 50051, "Port for the server to run on")
 	flag.Parse()
-
 	fmt.Printf("Starting Addition Server on port %d...\n", *port)
 	conn, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
