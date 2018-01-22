@@ -17,7 +17,7 @@ import (
 func main() {
 	// Set up a connection to the server
 	fmt.Println("Enter server IP:")
-	reader := bufio.NewReader()
+	reader := bufio.NewReader(os.Stdin)
 	ip,_ := reader.ReadString('\n')
 	ip = ip[:len(ip)-1]
 	fmt.Println("Connecting to "+ip+":50051 ... ")
