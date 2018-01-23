@@ -8,14 +8,19 @@ import (
 	"fmt"
 	"time"
 	"os"
+	"bufio"
+	
 )
 
 
 
 func main() {
 	// Set up a connection to the server
-	fmt.Println(os.Args[1])
-	ip := os.Args[1]
+	fmt.Println("Enter server IP:")
+	reader := bufio.NewReader()
+	ip,_ := reader.ReadString('\n')
+	ip = ip[:len(ip)-1]
+	fmt.Println("Connecting to "+ip+":50051 ... ")
 	conn, err := grpc.Dial(ip+":50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
