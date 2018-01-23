@@ -3,7 +3,8 @@ package main
 import (
 	"log"
 	"net"
-
+	"fmt"
+	"os"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	pb "gRPC/Echo/proto"
@@ -23,6 +24,13 @@ func (s *server) EchoBack(ctx context.Context, in *pb.EchoRequest) (*pb.EchoResp
 }
 
 func main() {
+	host,_ := os.Hostname()
+	addrs,_ := net.LookupIP(host)
+	for _,addr := range addrs{
+	if ipv4 := addr.To4(); ipv4 != nil{
+	fmt.Println("IPv4: ",ipv4)
+	}}
+	fmt.Printf("Starting Echo Server on port %d...\n", port)
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
